@@ -6,7 +6,7 @@
 
 #### Installation
 
-You can download the latest release from [here](releases).
+You can download the latest release from [here](https://github.com/alii/mau5ville/releases).
 
 #### Building
 
