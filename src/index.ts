@@ -2,8 +2,7 @@ import { factory } from "./rpc";
 import { constants } from "./config";
 import ora from "ora";
 
-const loading = ora("Connecting to Discord");
-loading.start();
+const loading = ora("Connecting to Discord").start();
 
 factory(constants.CLIENT_ID).then(async (client) => {
   client.updatePresence({
@@ -11,11 +10,13 @@ factory(constants.CLIENT_ID).then(async (client) => {
     state: "Mining blocks",
     startTimestamp: new Date(),
     instance: true,
+    largeImageKey: "mau5",
+    largeImageText: "deadmau5",
   });
 
   loading.succeed("Connected to Discord");
 
-  await client.on("error", () => {
-    loading.warn("An error occurred connecting to Discord");
+  await client.on("error", (error: Error) => {
+    loading.warn(`An error occurred connecting to Discord: ${error.message}`);
   });
 });
